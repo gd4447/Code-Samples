@@ -2,10 +2,9 @@
 """
 Created on Mon Jan 21 21:01:06 2019
 
-Take a category pivot file (straight up) as input. See Get_Category_pivot.py
+Take a category pivot file (straight up) as input.
 Select a category to serve as the dependent variable y
-run against all categories. Optional regex to narrow the X variables
-
+run against all events. Optional regex to narrow the X variables
 
 @author: Gerardo
 """
@@ -39,7 +38,7 @@ X.fillna(0, inplace=True)
 
 
 if keepCats:
-    X = X.loc[:,X.columns.str.contains('ST Effort')]
+    X = X.loc[:,X.columns.str.contains('Effort')]
 if dropCats:
     X = X.loc[:,~X.columns.str.contains('Churn')]
 
@@ -96,7 +95,7 @@ logit_result = logit_mod.fit()
 
 summary = logit_result.summary2()
 print(summary)
-summary.tables[1].to_csv('{}'.format("Logit_Model_LOSS_Full.csv"))
+summary.tables[1].to_csv('{}'.format("Logit_Model_LOSS.csv"))
 
 
 from sklearn.metrics import classification_report, confusion_matrix
